@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_maps"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MapsActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_tv_destination"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/colorlightPurple">
+
+        <ImageView
+            android:id="@+id/im_pickup"
+            android:layout_width="15dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/places_ic_search"
+            android:layout_marginLeft="6dp"/>
+
+        <TextView
+            android:id="@+id/tv_destination"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Find Destination"
+            android:textColorHint="@color/colorIOffWhite"
+            android:gravity="left|center"
+            android:paddingLeft="6dp"
+            android:textColor="@color/colorWhite"
+            android:layout_toRightOf="@+id/im_pickup"/>
+
+
+
+
+    </RelativeLayout>
+
+
+
+
+
+    <fragment
+        android:id="@+id/map"
+        android:layout_below="@+id/rl_tv_destination"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@color/colorlightPurple">
+
+            <TextView
+                android:id="@+id/tv_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"/>
+
+        </RelativeLayout>
+
+
+
+    </fragment>
+
+
+
+
+</RelativeLayout>
