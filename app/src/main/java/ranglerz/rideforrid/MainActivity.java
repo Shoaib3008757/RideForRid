@@ -376,6 +376,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 Intent i = new Intent(MainActivity.this, MapsActivity.class);
+                //Intent i = new Intent(MainActivity.this, TestMapLocation.class);
                 startActivity(i);
 
                 /*final String pickLocation = tv_pickuplocation.getText().toString();

@@ -29,7 +29,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.os.ResultReceiver;
+import android.os.ResultReceiver;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -664,7 +664,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         //
 
-        Log.e("TAG", "tbe boolen is: " + isStartTravling);
         if (isStartTravling) {
 
 
@@ -680,8 +679,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             double lat = location.getLatitude();
             double lng = location.getLongitude();
-            Log.e("TAg", "  the change location is: " + lat);
-            Log.e("TAg", "  the change location is: " + lng);
+
 
 
             //Place current location marker
@@ -699,8 +697,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             LatLng currentLatLng = new LatLng(latitude, longitude);
 
-            Log.e("TAG", "abc test CurrentLATLNG: " + latLng);
-            Log.e("TAG", " abc test Static LatLng: " + currentLatLng);
 
 
             calculateShorDistance(latlngDestinationFromTv, latLng);
@@ -1172,6 +1168,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         double llat = latLng.latitude;
                         double llng = latLng.longitude;
 
+                        Log.e("TAG", "Selected Lat: " + llat);
+                        Log.e("TAG", "Selected lng: " + llng);
+
+                        //String url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=31.38125469215786,74.18588239699602&key=AIzaSyDZ3upLpPtUs-fSkGuo2JBJodCQ_SEsWos";
+                       // String finalAddressUrl = "https://maps.googleapis.com/maps/api/geocode/json?latlng="+llat+","+llng+"&key="+getResources().getString(R.string.map_geocoding);
+
+
+
                         startingService(llat, llng);
 
                     }
@@ -1208,13 +1212,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         protected void onReceiveResult(int resultCode, final Bundle resultData) {
             Log.e("AG", " result code: " + resultCode);
             if (resultCode == Constants.SUCCESS_RESULT) {
-                final Address address = resultData.getParcelable(Constants.RESULT_ADDRESS);
+                final String address = resultData.getString(Constants.RESULT_ADDRESS);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                        // progressBar.setVisibility(View.GONE);
                         //infoText.setVisibility(View.VISIBLE);
                 Log.e("TAg", "my location Address: " + address);
+                        tv_destination.setText(address);
                     }
                 });
             }
@@ -1231,16 +1236,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void startingService(double lat, double lng){
-        Intent intent = new Intent(this, GeocodeAddressIntentService.class);
-        intent.putExtra(Constants.RECEIVER, mResultReceiver);
+        Intent intent = new Intent(this, LocationAddressService.class);
 
+        intent.putExtra(Constants.RECEIVER, mResultReceiver);
 
         intent.putExtra(Constants.LOCATION_LATITUDE_DATA_EXTRA,
                 lat);
         intent.putExtra(Constants.LOCATION_LONGITUDE_DATA_EXTRA,
                 lng);
         startService(intent);
-
     }
 
 

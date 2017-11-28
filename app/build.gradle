@@ -43,5 +43,8 @@ dependencies {
     compile 'com.google.maps.android:android-maps-utils:0.4.+'
     compile 'com.google.android.gms:play-services-location:11.0.4'
 
+    compile 'com.squareup.okhttp3:okhttp:3.8.1'
+    compile 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
+
     testCompile 'junit:junit:4.12'
 }
